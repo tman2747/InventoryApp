@@ -1,0 +1,85 @@
+:root {
+  --primary: #ffffff;
+
+  --secondary-1: #01040f;
+  --secondary-2: #1e2025;
+  --secondary-3: #35373d;
+  --secondary-4: #4f5055;
+
+  --success: #22946e;
+  --danger: #9c2121;
+}
+html {
+  font-size: 10px;
+}
+* {
+  padding: 0;
+  margin: 0px;
+  font-family: jetBrainsMono, sans-serif;
+}
+/* * {
+  outline: 1px solid var(--danger);
+} */
+
+body {
+  min-height: 100vh;
+  min-height: 100svh; /* for mobile so the view port automatically accounts for the address bar going up and down*/
+  /* this is to make the rest of the page a flex container that way the bottom of the content will grow if its not big enough to fill the page */
+  display: flex;
+  /* same with this*/
+  flex-direction: column;
+  background-color: var(--secondary-1);
+}
+
+.navContainer {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  justify-content: space-between;
+  height: 50px;
+  background-color: var(--secondary-2);
+  padding: 10px 10px;
+}
+
+#search {
+  width: clamp(100px, 40vw, 800px);
+  margin: 0px 10px;
+  font-size: 20px;
+  background-color: var(--secondary-4);
+  color: var(--primary);
+
+  border: var(--secondary-2) solid 1px;
+  height: 50px;
+  padding: 0px 10px;
+  border-radius: 5px;
+}
+#search:focus {
+  border: var(--secondary-2) solid 1px;
+  box-shadow: none;
+  outline: none;
+}
+#search::placeholder {
+  color: var(--primary);
+}
+.navbar-left {
+  display: flex;
+  justify-self: start;
+}
+.navbar-right {
+  display: flex;
+  justify-self: end;
+  gap: 10px;
+}
+
+.navButton {
+  display: flex;
+  color: var(--primary);
+  border: var(--secondary-2) solid 1px;
+  border-radius: 5px;
+  background-color: var(--secondary-4);
+  text-decoration: none;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  padding: 0px 20px;
+}
