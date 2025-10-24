@@ -2,6 +2,7 @@ const express = require("express");
 const indexContoller = require("../controller/indexContoller");
 const indexRouter = express.Router();
 
+indexRouter.get("/create/genre", indexContoller.getGenres);
 indexRouter.post("/create/dev", indexContoller.sendDevPost);
 indexRouter.get("/create/dev", indexContoller.addDev);
 indexRouter.get("/create/game", indexContoller.createGame);

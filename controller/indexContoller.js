@@ -38,3 +38,8 @@ exports.sendDevPost = [
     res.redirect("/create/dev");
   },
 ];
+
+exports.getGenres = (req, res, next) => {
+  const genres = {};
+  res.render("addGenre", { genres: genres });
+};

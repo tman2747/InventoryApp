@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Add A Genre</title>
+  </head>
+  <body>
+    <%- include('navbar') %>
+    <div class="pageContent">
+      <div class="formContainer">
+        <form action="" method="post">
+          <label for="genreName">Genre Name</label>
+          <input type="text" id="genreName" name="genreName" class="search" />
+          <button type="submit" id="gameSubmit">Add</button>
+        </form>
+      </div>
+      <% if (genres && genres.length > 0) { genres.forEach(genre => { %>
+      <div class="defaultText"><%- genre.genre %></div>
+      <% }) %> <% } else { %>
+      <div class="defaultText">No genres found</div>
+      <% } %>
+    </div>
+  </body>
+</html>
