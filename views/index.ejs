@@ -8,5 +8,16 @@
   </head>
   <body>
     <%- include('navbar.ejs') %>
+    <div class="pageContent">
+      <h2 style="color: white">Games</h2>
+      <div class="gameCardWrapper">
+        <% games.forEach(element => { %>
+        <div class="gameCard">
+          <div><%- element.game%></div>
+          <div><%- element.developers%></div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Add A Developer</title>
+  </head>
+  <body>
+    <%- include('navbar') %>
+    <div class="pageContent">
+      <div class="formContainer">
+        <form action="" method="post">
+          <label for="devName">Developer Name</label>
+          <input type="text" id="devName" name="devName" class="search" />
+          <button type="submit" id="gameSubmit">Add</button>
+        </form>
+      </div>
+      <% devs.forEach(dev => {%>
+      <div class="defaultText"><%- dev.developer %></div>
+      <%}); %>
+    </div>
+  </body>
+</html>

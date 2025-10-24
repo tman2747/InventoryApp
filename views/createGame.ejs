@@ -8,21 +8,23 @@
   </head>
   <body>
     <%- include('navbar') %>
-    <div class="formContainer">
-      <form action="" method="post">
-        <label for="gameName">Game Name: </label>
-        <input type="text" id="gameName" name="gameName" class="search" />
-        <label for="genre">Genre: </label>
-        <input type="text" id="gameGenre" name="gameGenre" class="search" />
-        <label for="gameDeveloper">Game Developer: </label>
-        <input
-          type="text"
-          id="gameDeveloper"
-          name="gameDeveloper"
-          class="search"
-        />
-        <button type="submit" id="gameSubmit">Add</button>
-      </form>
+    <div class="pageContent">
+      <div class="formContainer">
+        <form action="" method="post">
+          <label for="gameName">Game Name: </label>
+          <input type="text" id="gameName" name="gameName" class="search" />
+          <label for="genre">Genre: </label>
+          <input type="text" id="gameGenre" name="gameGenre" class="search" />
+          <label for="gameDeveloper">Game Developer: </label>
+          <div class="developerSelect">
+            <% devs.forEach(dev => { %>
+            <label for="<%-dev.developer%>"><%- dev.developer %></label>
+            <input type="checkbox" name="developer" id="<%-dev.developer%>" />
+            <% }) %>
+          </div>
+          <button type="submit" id="gameSubmit">Add</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
