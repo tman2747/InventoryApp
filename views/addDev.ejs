@@ -16,9 +16,11 @@
           <button type="submit" id="gameSubmit">Add</button>
         </form>
       </div>
-      <% devs.forEach(dev => {%>
+      <% if (devs && devs.length > 0) {devs.forEach(dev => {%>
       <div class="defaultText"><%- dev.developer %></div>
-      <%}); %>
+      <%});} else{%>
+      <div class="defaultText">No Developers Found</div>
+      <% } %>
     </div>
   </body>
 </html>

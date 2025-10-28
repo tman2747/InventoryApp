@@ -1,5 +1,11 @@
 const { body, validationResult, matchedData } = require("express-validator");
-const { getAllgames, addDev, getAllDevs } = require("../models/queries");
+const {
+  getAllgames,
+  addDev,
+  getAllDevs,
+  getAllGenres,
+  addGenre,
+} = require("../models/queries");
 
 exports.sendIndex = async (req, res, next) => {
   console.log(await getAllgames());
@@ -10,7 +16,12 @@ exports.sendIndex = async (req, res, next) => {
 };
 exports.createGame = async (req, res, next) => {
   const devs = await getAllDevs();
-  res.render("createGame", { devs: devs });
+  const genres = await getAllGenres();
+  res.render("createGame", { devs: devs, genres: genres });
+};
+exports.postGame = async (req, res, next) => {
+  console.log(req.body);
+  res.redirect("/create/game");
 };
 
 exports.addDev = async (req, res, next) => {
@@ -24,6 +35,12 @@ const validateDevPost = [
     .isLength({ min: 2, max: 30 })
     .withMessage("must be between 2 and 30 chars"),
 ];
+const validateGenre = [
+  body("genreName")
+    .trim()
+    .isLength({ min: 2, max: 30 })
+    .withMessage("must be between 2 and 30 chars"),
+];
 
 exports.sendDevPost = [
   validateDevPost,
@@ -31,6 +48,7 @@ exports.sendDevPost = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       console.log(errors.errors);
+      res.redirect("/create/dev");
       return;
     }
 
@@ -39,7 +57,21 @@ exports.sendDevPost = [
   },
 ];
 
-exports.getGenres = (req, res, next) => {
-  const genres = {};
+exports.addGenre = [
+  validateGenre,
+  async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.log(errors.errors);
+      res.redirect("/create/genre");
+      return;
+    }
+    addGenre(matchedData(req).genreName);
+    res.redirect("/create/genre");
+  },
+];
+
+exports.getGenres = async (req, res, next) => {
+  const genres = await getAllGenres();
   res.render("addGenre", { genres: genres });
 };

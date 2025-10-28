@@ -14,12 +14,27 @@
           <label for="gameName">Game Name: </label>
           <input type="text" id="gameName" name="gameName" class="search" />
           <label for="genre">Genre: </label>
-          <input type="text" id="gameGenre" name="gameGenre" class="search" />
+          <div class="developerSelect">
+            <% genres.forEach(genre => { %>
+            <label for="<%-genre.genre%>"><%- genre.genre %></label>
+            <input
+              type="checkbox"
+              name="genre"
+              id="<%-genre.genre%>"
+              value="<%- genre.genre %>"
+            />
+            <% }) %>
+          </div>
           <label for="gameDeveloper">Game Developer: </label>
           <div class="developerSelect">
             <% devs.forEach(dev => { %>
             <label for="<%-dev.developer%>"><%- dev.developer %></label>
-            <input type="checkbox" name="developer" id="<%-dev.developer%>" />
+            <input
+              type="checkbox"
+              name="developer"
+              id="<%-dev.developer%>"
+              value="<%- dev.developer %>"
+            />
             <% }) %>
           </div>
           <button type="submit" id="gameSubmit">Add</button>

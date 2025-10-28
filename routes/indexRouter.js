@@ -2,9 +2,11 @@ const express = require("express");
 const indexContoller = require("../controller/indexContoller");
 const indexRouter = express.Router();
 
+indexRouter.post("/create/genre", indexContoller.addGenre);
 indexRouter.get("/create/genre", indexContoller.getGenres);
 indexRouter.post("/create/dev", indexContoller.sendDevPost);
 indexRouter.get("/create/dev", indexContoller.addDev);
+indexRouter.post("/create/game", indexContoller.postGame);
 indexRouter.get("/create/game", indexContoller.createGame);
 indexRouter.get("/", indexContoller.sendIndex);
 indexRouter.get("/{*error}", (req, res) => {

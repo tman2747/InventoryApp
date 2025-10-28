@@ -30,6 +30,17 @@ exports.getAllDevs = async () => {
   return rows;
 };
 
+exports.addGenre = async (genreName) => {
+  await pool.query("INSERT INTO genre (genre)VALUES($1)", [genreName]);
+};
+
+exports.getAllGenres = async () => {
+  const { rows } = await pool.query("SELECT * FROM genre");
+  return rows;
+};
+
+
+
 // exports.addUser = async (name, date) => {
 //   await pool.query("INSERT INTO users (username,post) VALUES($1,$2)", [
 //     name,
