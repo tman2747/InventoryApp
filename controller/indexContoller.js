@@ -5,6 +5,7 @@ const {
   getAllDevs,
   getAllGenres,
   addGenre,
+  addGame,
 } = require("../models/queries");
 
 exports.sendIndex = async (req, res, next) => {
@@ -21,6 +22,16 @@ exports.createGame = async (req, res, next) => {
 };
 exports.postGame = async (req, res, next) => {
   console.log(req.body);
+  let game = req.body.gameName;
+  let genre = req.body.genre;
+  let dev = req.body.developer;
+  if (!Array.isArray(genre)) {
+    genre = [genre];
+  }
+  if (!Array.isArray(dev)) {
+    dev = [dev];
+  }
+  addGame(game, genre, dev);
   res.redirect("/create/game");
 };
 
