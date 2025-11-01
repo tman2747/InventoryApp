@@ -45,6 +45,7 @@ exports.addGame = async (game, genres, devs) => {
   const client = await pool.connect();
   try {
     await client.query("begin");
+
     const { rows: gameRow } = await client.query(
       "INSERT into game (game) values($1) returning *",
       [game]
@@ -71,7 +72,6 @@ exports.addGame = async (game, genres, devs) => {
         })
       )
     ).flat();
-    await console.log(await client.query("select * from game_developer"));
     await devList.forEach(async (dev) => {
       await client.query(
         "INSERT INTO game_developer (game_id,developer_id) VALUES($1,$2)",
@@ -84,7 +84,6 @@ exports.addGame = async (game, genres, devs) => {
         [gameRow[0].id, genre.id]
       );
     });
-    await console.log(await client.query("select * from game_developer"));
     console.log("Game added! NO ERRORS (Hopefully)");
     await client.query("COMMIT");
   } catch (err) {

@@ -9,7 +9,6 @@ const {
 } = require("../models/queries");
 
 exports.sendIndex = async (req, res, next) => {
-  console.log(await getAllgames());
   res.render("index", {
     stuff: "you can send stuff to ejs here",
     games: await getAllgames(),
@@ -21,7 +20,6 @@ exports.createGame = async (req, res, next) => {
   res.render("createGame", { devs: devs, genres: genres });
 };
 exports.postGame = async (req, res, next) => {
-  console.log(req.body);
   let game = req.body.gameName;
   let genre = req.body.genre;
   let dev = req.body.developer;
@@ -52,7 +50,6 @@ const validateGenre = [
     .isLength({ min: 2, max: 30 })
     .withMessage("must be between 2 and 30 chars"),
 ];
-
 exports.sendDevPost = [
   validateDevPost,
   async (req, res, next) => {
@@ -77,7 +74,7 @@ exports.addGenre = [
       res.redirect("/create/genre");
       return;
     }
-    addGenre(matchedData(req).genreName);
+    await addGenre(matchedData(req).genreName);
     res.redirect("/create/genre");
   },
 ];
