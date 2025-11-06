@@ -94,6 +94,10 @@ exports.addGame = async (game, genres, devs) => {
   }
 };
 
+exports.deleteGameQuery = async (id) => {
+  await pool.query("DELETE FROM game WHERE id=$1", [id]);
+};
+
 // exports.addUser = async (name, date) => {
 //   await pool.query("INSERT INTO users (username,post) VALUES($1,$2)", [
 //     name,

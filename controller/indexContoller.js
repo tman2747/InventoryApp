@@ -6,6 +6,7 @@ const {
   getAllGenres,
   addGenre,
   addGame,
+  deleteGameQuery,
 } = require("../models/queries");
 
 exports.sendIndex = async (req, res, next) => {
@@ -82,4 +83,14 @@ exports.addGenre = [
 exports.getGenres = async (req, res, next) => {
   const genres = await getAllGenres();
   res.render("addGenre", { genres: genres });
+};
+
+// exports.getGame = async (req, res, next) => {
+//   console.log(req.params.id);
+//   res.render("gameID");
+// };
+
+exports.deleteGame = async (req, res, next) => {
+  await deleteGameQuery(req.body.id);
+  res.redirect("/");
 };

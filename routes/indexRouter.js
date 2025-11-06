@@ -8,6 +8,7 @@ indexRouter.post("/create/dev", indexContoller.sendDevPost);
 indexRouter.get("/create/dev", indexContoller.addDev);
 indexRouter.post("/create/game", indexContoller.postGame);
 indexRouter.get("/create/game", indexContoller.createGame);
+indexRouter.post("/", indexContoller.deleteGame);
 indexRouter.get("/", indexContoller.sendIndex);
 indexRouter.get("/{*error}", (req, res) => {
   res
