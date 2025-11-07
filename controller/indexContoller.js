@@ -91,6 +91,9 @@ exports.getGenres = async (req, res, next) => {
 // };
 
 exports.deleteGame = async (req, res, next) => {
+  if (req.body.update) {
+    console.log(true);
+  }
   await deleteGameQuery(req.body.id);
   res.redirect("/");
 };
