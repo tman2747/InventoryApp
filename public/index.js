@@ -1,20 +1,24 @@
-const popupWindow = document.querySelector(".popupWindow");
-
-const form = document.querySelector(".popupWindow > form");
-
 const cards = document.querySelectorAll(".gameCard");
 
-form.addEventListener("click", (e) => {
-  e.stopPropagation();
-  console.log("formCicked");
-});
-
-popupWindow.addEventListener("click", (e) => {
-  popupWindow.style.display = "none";
-});
-
 cards.forEach((card) => {
+  const popupWindow = card.querySelector(".popupWindow");
+  const popupForm = popupWindow.querySelector("form");
+  const deleteForm = card.querySelector(".deleteForm");
+
   card.addEventListener("click", (e) => {
+    if (popupWindow.contains(e.target)) {
+      return;
+    }
     popupWindow.style.display = "flex";
+  });
+  deleteForm.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+  popupWindow.addEventListener("click", (e) => {
+    popupWindow.style.display = "none";
+  });
+
+  popupForm.addEventListener("click", (e) => {
+    e.stopPropagation();
   });
 });

@@ -7,6 +7,7 @@ const {
   addGenre,
   addGame,
   deleteGameQuery,
+  updateName,
 } = require("../models/queries");
 
 exports.sendIndex = async (req, res, next) => {
@@ -92,8 +93,27 @@ exports.getGenres = async (req, res, next) => {
 
 exports.deleteGame = async (req, res, next) => {
   if (req.body.update) {
-    console.log(true);
+    console.log("Running update");
+    console.log(req.body);
+    updateName(req.body.id, req.body.gameName);
+    // // delete game
+    // await deleteGameQuery();
+    // // add game
+
+    // let game = req.body.gameName;
+    // let genre = req.body.genre;
+    // let dev = req.body.dev;
+    // if (!Array.isArray(genre)) {
+    //   genre = [genre];
+    // }
+    // if (!Array.isArray(dev)) {
+    //   dev = [dev];
+    // }
+    // addGame(game, genre, dev);
+    // res.redirect("/create/game");
+  } else if (req.body.id) {
+    console.log("Running delete");
+    await deleteGameQuery(req.body.id);
   }
-  await deleteGameQuery(req.body.id);
   res.redirect("/");
 };

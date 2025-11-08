@@ -1,3 +1,4 @@
+const { selectFields } = require("express-validator/lib/field-selection");
 const pool = require("./pool");
 
 const getAllGamesQuery = `SELECT
@@ -21,6 +22,10 @@ GROUP BY g.id, g.game;`;
 exports.getAllgames = async () => {
   const { rows } = await pool.query(getAllGamesQuery);
   return rows;
+};
+
+exports.updateName = async (id, newName) => {
+  await pool.query(`update game set "game" = $2 where id = $1`, [id, newName]);
 };
 
 exports.addDev = async (devName) => {

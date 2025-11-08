@@ -16,26 +16,29 @@
           <div><%- element.game%></div>
           <div><%- element.developers%></div>
           <div><%- element.genres%></div>
-          <form action="" method="post">
+          <form action="" method="post" class="deleteForm">
             <input type="hidden" name="id" value="<%- element.id %>" />
             <button>Delete</button>
           </form>
+          <div class="popupWindow">
+            <form action="" method="post">
+              <input type="hidden" name="update" value="true" />
+              <input type="hidden" name="id" value="<%-element.id %>" />
+              <label for="gameName">Game Name:</label>
+              <input
+                type="text"
+                placeholder="<%- element.game%>"
+                name="gameName"
+                id="gameName"
+              />
+              <button>update</button>
+            </form>
+          </div>
         </div>
         <% }) %>
       </div>
     </div>
-    <div class="popupWindow">
-      <form action="" method="post">
-        <label for="gameName">Game Name:</label>
-        <input type="text" placeholder="" name="gameName" id="gameName" />
-        <label for="genre">Genre:</label>
-        <input type="text" placeholder="" name="genre" id="genre" />
-        <label for="dev">Developer:</label>
-        <input type="text" placeholder="" name="dev" id="dev" />
-        <input type="hidden" name="update" value="true" />
-        <button>Submit</button>
-      </form>
-    </div>
+
     <%- include('footer') %>
   </body>
   <script src="index.js"></script>
